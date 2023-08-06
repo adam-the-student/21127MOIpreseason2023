@@ -34,8 +34,8 @@ public class zekeWithoutArm extends LinearOpMode {
 
         leftIntake.setPosition(.5);
         rightIntake.setPosition(.5);
-        leftIntake.scaleRange(.15,.85);
-        rightIntake.scaleRange(.15,.85);
+        leftIntake.scaleRange(.3,.85);
+        rightIntake.scaleRange(.15,.7);
         waitForStart();
         if (opModeIsActive()) {/* Put run blocks here. */
             while (opModeIsActive()) {/* Put loop blocks here. */
@@ -70,8 +70,8 @@ public class zekeWithoutArm extends LinearOpMode {
                     leftIntake.setPosition(0);
                     rightIntake.setPosition(1);
                 } else if (gamepad2.circle){
-                    leftIntake.setPosition(0);
-                    rightIntake.setPosition(1);
+                    leftIntake.setPosition(1);
+                    rightIntake.setPosition(0);
                 } else if (gamepad2.triangle) {
                     leftIntake.setPosition(0.5);
                     rightIntake.setPosition(0.5);
