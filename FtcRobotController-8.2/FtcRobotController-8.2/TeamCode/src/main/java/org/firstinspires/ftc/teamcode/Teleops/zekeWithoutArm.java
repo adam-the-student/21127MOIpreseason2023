@@ -14,11 +14,10 @@ public class zekeWithoutArm extends LinearOpMode {
     private DcMotor motor2;
     private DcMotor motor3;
     private DcMotor motor4;
-    private Servo rightIntake;
-    private Servo leftIntake;
-    private CRServo intakeClaw;
-    private DcMotor intakemotor, outtakemotor;
-    private DcMotorEx intakeEncoder, outtakeEncoder;
+    private Servo rightIntake, leftIntake;
+    private CRServo intakeClaw, flippy;
+    private DcMotor intakemotor, outtakemotor, outtakemotor2, v4bmotor;
+    private DcMotor intakeEncoder, outtakeEncoder;
 
     @Override
     public void runOpMode() {
@@ -26,16 +25,16 @@ public class zekeWithoutArm extends LinearOpMode {
         motor2 = hardwareMap.dcMotor.get("frontRight");
         motor3 = hardwareMap.dcMotor.get("backLeft");
         motor4 = hardwareMap.dcMotor.get("backRight");
-        leftIntake = hardwareMap.servo.get("leftIntake");
-        rightIntake = hardwareMap.servo.get("rightIntake");
+        leftIntake = hardwareMap.servo.get("leftv4b");
+        rightIntake = hardwareMap.servo.get("rightv4b");
         intakeClaw = hardwareMap.crservo.get("claw");
         intakemotor = hardwareMap.dcMotor.get("inTake");
         outtakemotor = hardwareMap.dcMotor.get("outTake");
+        outtakemotor2 = hardwareMap.dcMotor.get("outTake1");
+        flippy = hardwareMap.crservo.get("flippy");
 
-        leftIntake.setPosition(.5);
-        rightIntake.setPosition(.5);
-        leftIntake.scaleRange(.3,.85);
-        rightIntake.scaleRange(.15,.7);
+        rightIntake.scaleRange(.499,.501);
+        leftIntake.scaleRange(.499,.501);
         waitForStart();
         if (opModeIsActive()) {/* Put run blocks here. */
             while (opModeIsActive()) {/* Put loop blocks here. */
@@ -66,16 +65,34 @@ public class zekeWithoutArm extends LinearOpMode {
                 intakemotor.setPower(-gamepad2.left_stick_y);
                 outtakemotor.setPower(gamepad2.right_stick_y);
 
-                if (gamepad2.square){
-                    leftIntake.setPosition(0);
-                    rightIntake.setPosition(1);
-                } else if (gamepad2.circle){
-                    leftIntake.setPosition(1);
-                    rightIntake.setPosition(0);
-                } else if (gamepad2.triangle) {
-                    leftIntake.setPosition(0.5);
-                    rightIntake.setPosition(0.5);
+                if (gamepad2.dpad_right){
+//
+
+                } else if (gamepad2.dpad_left) {
+//
+                } else {
+//
                 }
+
+                if (gamepad2.triangle){
+                    flippy.setPower(-.4);
+                }
+                else if (gamepad2.x){
+                    flippy.setPower(.4);
+                }
+                else {
+                    flippy.setPower(0);
+                }
+                if (gamepad2.right_trigger >= 0.1){
+                intakeClaw.setPower(1);
+                }
+                else if (gamepad2.left_trigger >= 0.1) {
+                intakeClaw.setPower(-1);
+                }
+                else {
+                    intakeClaw.setPower(0);
+                }
+
 
                 telemetry.update();
             }
