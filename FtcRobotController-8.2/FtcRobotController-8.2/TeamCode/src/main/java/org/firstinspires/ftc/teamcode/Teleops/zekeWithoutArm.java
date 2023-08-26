@@ -33,8 +33,10 @@ public class zekeWithoutArm extends LinearOpMode {
         outtakemotor2 = hardwareMap.dcMotor.get("outTake1");
         flippy = hardwareMap.crservo.get("flippy");
 
-        rightIntake.scaleRange(.499,.501);
+//        leftIntake.scaleRange((double)11/54,(double)34/54);
+//        rightIntake.scaleRange(43/(double)54,10/(double)27);
         leftIntake.scaleRange(.499,.501);
+        rightIntake.scaleRange(.499,.501);
         waitForStart();
         if (opModeIsActive()) {/* Put run blocks here. */
             while (opModeIsActive()) {/* Put loop blocks here. */
@@ -65,14 +67,18 @@ public class zekeWithoutArm extends LinearOpMode {
                 intakemotor.setPower(-gamepad2.left_stick_y);
                 outtakemotor.setPower(gamepad2.right_stick_y);
 
-                if (gamepad2.dpad_right){
-//
-
-                } else if (gamepad2.dpad_left) {
-//
-                } else {
-//
+                if (gamepad2.dpad_up){
+                    leftIntake.scaleRange((double)11/54,11.001/54);
+                    rightIntake.scaleRange((double)43/54,43.001/54);
+                } else if (gamepad2.dpad_down) {
+                    leftIntake.scaleRange(34/(double)54, 34.0001/(double)54);
+                    rightIntake.scaleRange(20/(double)54, 20.0001/(double)54);
+                } else if (gamepad2.dpad_right || gamepad2.dpad_left) {
+                    leftIntake.scaleRange(.499,.501);
+                    rightIntake.scaleRange(.499,.501);
                 }
+                leftIntake.setPosition(.5);
+                rightIntake.setPosition(.5);
 
                 if (gamepad2.triangle){
                     flippy.setPower(-.4);
@@ -84,10 +90,10 @@ public class zekeWithoutArm extends LinearOpMode {
                     flippy.setPower(0);
                 }
                 if (gamepad2.right_trigger >= 0.1){
-                intakeClaw.setPower(1);
+                intakeClaw.setPower(.3);
                 }
                 else if (gamepad2.left_trigger >= 0.1) {
-                intakeClaw.setPower(-1);
+                intakeClaw.setPower(-.3);
                 }
                 else {
                     intakeClaw.setPower(0);
