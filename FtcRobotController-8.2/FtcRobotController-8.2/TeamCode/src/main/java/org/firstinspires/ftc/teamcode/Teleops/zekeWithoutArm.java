@@ -68,14 +68,14 @@ public class zekeWithoutArm extends LinearOpMode {
                 outtakemotor.setPower(gamepad2.right_stick_y);
 
                 if (gamepad2.dpad_up){
-                    leftIntake.scaleRange((double)11/54,11.001/54);
-                    rightIntake.scaleRange((double)43/54,43.001/54);
+                    leftIntake.scaleRange((double)17/54,17.01/54);
+                    rightIntake.scaleRange((double)35/54,35.001/54);
                 } else if (gamepad2.dpad_down) {
-                    leftIntake.scaleRange(34/(double)54, 34.0001/(double)54);
-                    rightIntake.scaleRange(20/(double)54, 20.0001/(double)54);
+                    leftIntake.scaleRange(39/(double)54, 39.0001/(double)54);
+                    rightIntake.scaleRange(15/(double)54, 15.0001/(double)54);
                 } else if (gamepad2.dpad_right || gamepad2.dpad_left) {
-                    leftIntake.scaleRange(.499,.501);
-                    rightIntake.scaleRange(.499,.501);
+                    leftIntake.scaleRange(.6,.601);
+                    rightIntake.scaleRange(.399,.4);
                 }
                 leftIntake.setPosition(.5);
                 rightIntake.setPosition(.5);
@@ -84,16 +84,15 @@ public class zekeWithoutArm extends LinearOpMode {
                     flippy.setPosition(1);
                 }
                 else if (gamepad2.x){
-                    flippy.setPosition(0);
+                    flippy.setPosition(0.2);
                 }
                 if (gamepad2.right_trigger >= 0.1){
-                intakeClaw.setPower(.3);
+                intakeClaw.setPower(.5);
+                sleep(100);
+                intakeClaw.setPower(0);
                 }
                 else if (gamepad2.left_trigger >= 0.1) {
-                intakeClaw.setPower(-.3);
-                }
-                else {
-                    intakeClaw.setPower(0);
+                intakeClaw.setPower(-.1);
                 }
 
 
