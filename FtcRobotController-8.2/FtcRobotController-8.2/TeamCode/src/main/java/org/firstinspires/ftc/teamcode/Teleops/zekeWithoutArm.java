@@ -14,8 +14,8 @@ public class zekeWithoutArm extends LinearOpMode {
     private DcMotor motor2;
     private DcMotor motor3;
     private DcMotor motor4;
-    private Servo rightIntake, leftIntake;
-    private CRServo intakeClaw, flippy;
+    private Servo rightIntake, leftIntake, flippy;
+    private CRServo intakeClaw;
     private DcMotor intakemotor, outtakemotor, outtakemotor2, v4bmotor;
     private DcMotor intakeEncoder, outtakeEncoder;
 
@@ -31,7 +31,7 @@ public class zekeWithoutArm extends LinearOpMode {
         intakemotor = hardwareMap.dcMotor.get("inTake");
         outtakemotor = hardwareMap.dcMotor.get("outTake");
         outtakemotor2 = hardwareMap.dcMotor.get("outTake1");
-        flippy = hardwareMap.crservo.get("flippy");
+        flippy = hardwareMap.servo.get("flippy");
 
 //        leftIntake.scaleRange((double)11/54,(double)34/54);
 //        rightIntake.scaleRange(43/(double)54,10/(double)27);
@@ -81,13 +81,10 @@ public class zekeWithoutArm extends LinearOpMode {
                 rightIntake.setPosition(.5);
 
                 if (gamepad2.triangle){
-                    flippy.setPower(-.4);
+                    flippy.setPosition(1);
                 }
                 else if (gamepad2.x){
-                    flippy.setPower(.4);
-                }
-                else {
-                    flippy.setPower(0);
+                    flippy.setPosition(0);
                 }
                 if (gamepad2.right_trigger >= 0.1){
                 intakeClaw.setPower(.3);
