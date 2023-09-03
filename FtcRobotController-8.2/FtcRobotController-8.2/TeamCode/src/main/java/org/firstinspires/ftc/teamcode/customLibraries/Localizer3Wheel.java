@@ -58,6 +58,7 @@ class VectorGeneratorWithTrig {
 
     public VectorGeneratorWithTrig(XYPosWithHeading currentPos) {
         double vectorAngle;
+        double distance = Math.sqrt(Math.pow(currentPos.getXCord()- lastPos.getXCord(),2) + Math.pow(currentPos.getXCord()- lastPos.getXCord(),2));
         if (currentPos.getXCord()<=lastPos.getXCord()){
             vectorAngle = Math.atan(Math.abs(currentPos.getYCord()-lastPos.getYCord())/(currentPos.getXCord()-lastPos.getXCord()))+90;
             if (currentPos.getYCord()<=lastPos.getYCord()){
